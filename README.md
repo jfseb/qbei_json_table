@@ -43,10 +43,10 @@ column Default Width ( .columnsDefaultWidth )
  
 ```
 see 
-[example with model][https://jfseb.github.io/qbei_json_table/app/public/index.html?data=ydata.json]
-[config file][https://jfseb.github.io/qbei_json_table/app/public/ydata.json.model.json]
+[example with model][https://jfseb.github.io/qbei_json_table/app/public/index.html?data=adata.json]
+[config file][https://jfseb.github.io/qbei_json_table/app/public/adata.json.model.json]
 
-
+Note how the Type columns is not available, tooltips indicate the description etc. 
 
 ## index file
 An optional index File 

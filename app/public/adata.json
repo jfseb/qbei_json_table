@@ -1,0 +1,19 @@
+[
+    {
+        "uri": "https://www.sap.com",
+        "Name": "SAP",
+        "Location": "Europa"
+    },
+    {
+        "uri": "https://www.google.com",
+        "Name": "Google",
+        "Location": "USA",
+        "Parent": "Alphabet"
+    },
+    {
+        "uri": "https://www.bosch.de",
+        "Name": "Bosch",
+        "Location": "Germany",
+        "Type": "Private owned"
+    }
+]

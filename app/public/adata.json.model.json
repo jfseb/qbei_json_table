@@ -1,0 +1,13 @@
+{ 
+    "columns"  : ["Name", "Location", "parent" ],
+    "columnsIndexed" : ["Name" , "Parent"],
+    "columnsDescription" : { 
+      "Name" : "Name of company",
+       "Location": "Location of company",
+       "parent": "Parent company"
+    },
+    "columnsDefaultWidth" : { 
+       "Name" : 150 , 
+     "Location" : 150 
+    }
+}
