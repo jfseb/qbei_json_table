@@ -1,0 +1,83 @@
+{
+  "name": "qbei_json_table",
+  "version": "0.0.2",
+  "description": "query by example table for json display",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jfseb/qbei_json_table.git"
+  },
+  "bugs": {
+    "url": "http://github.com/jfseb/qbei_json_table/issues"
+  },
+  "scripts": {
+    "setup": "gulp default",
+    "test": "gulp test",
+    "testOld": "./node_modules/.bin/nodeunit test/match test/utils && eslint",
+    "run": "node server.js",
+    "start": "node server.js",
+    "coverage": "./node_modules/.bin/nyc --source-map false nodeunit test/match test/exec test/ui test/model test/bot test/utils ",
+    "coverreportplain": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov ",
+    "coveralls": "./node_modules/.bin/nyc --source-map false report --reporter=text-lcov | coveralls"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "keywords": [
+    "query by example",
+    "elasticlunr"
+  ],
+  "author": "jfsebpublic@gmail.com",
+  "license": "Apache 2.0",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "bin": {
+    "nodeunit": ".nodeunit/bin/nodeunit",
+    "coverallst": ".coveralls/bin/coveralls"
+  },
+  "directories": {
+    "lib": "./lib",
+    "src": "./src",
+    "test": "./test",
+    "doc": "./doc",
+    "man": "./man1"
+  },
+  "babel": {
+    "comments": true
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/node": "^14.14.16",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-redux": "^7.1.14",
+    "coveralls": "^3.1.0",
+    "del": "^6.0.0",
+    "elasticlunr": "^0.9.5",
+    "fixed-data-table-2": "^1.1.2",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-env": "^0.4.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-jest": "^4.0.3",
+    "gulp-jsdoc3": "^3.0.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-shell": "^0.8.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.1",
+    "jest": "^26.6.3",
+    "jest-cli": "^26.6.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.1"
+  }
+}
