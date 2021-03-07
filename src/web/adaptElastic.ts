@@ -1,4 +1,8 @@
-function makeLunrIndex(data, lunrcolumns) {
+
+
+//var elasticlunr = (window as any).elasticlunr;
+
+export function makeLunrIndex(elasticlunr : any, data, lunrcolumns : string[]) {
   var elastic = elasticlunr(function () {
     var that = this;
     lunrcolumns.forEach(function(field) {
@@ -14,8 +18,6 @@ function makeLunrIndex(data, lunrcolumns) {
   return elastic.toJSON();
 }
 
-function makeElasticIndex(serIndex) {
-    elastic = elasticlunr.Index.load(serIndex /*str*/);
-  }
-  
-  console.log('did it');
+export function makeElasticIndex(elasticlunr: any, serIndex) {
+    (window as any).elastic = elasticlunr.Index.load(serIndex /*str*/);
+}

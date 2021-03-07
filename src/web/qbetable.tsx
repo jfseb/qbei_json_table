@@ -7,6 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import * as Thunk from 'redux-thunk';
 import { Provider, connect } from 'react-redux';
 import * as rere from 'react-redux';
+import * as AdaptElastic from './adaptElastic.ts';
 
 const MAXWIDTH= 570;
 const MINWIDTH= 30;
@@ -106,7 +107,8 @@ function augmentSerIndex(result) {
   if ( result.serIndex) {
     return;
   }
-  result.serIndex = (window as any).makeLunrIndex(result.data, result.columnsIndexed);
+  var elasticlunr = (window as any).elasticlunr;
+  result.serIndex = AdaptElastic.makeLunrIndex(elasticlunr, result.data, result.columnsIndexed);
 }
 
 function augmentResult(result, jsonUrl: string) {
@@ -119,7 +121,10 @@ function augmentResult(result, jsonUrl: string) {
 }
 
 function loadPlainJSONEtc(resolve, reject , jsonUrl) {
+  document.title = jsonUrl;
+  document.getElementById("Title").innerText = jsonUrl;
   var result = { data: null, 
+                  modelDescription : null,
                   columnsDescription : null,
                   columns : null,
                   columnsDefaultWidth : null,
@@ -134,10 +139,12 @@ function loadPlainJSONEtc(resolve, reject , jsonUrl) {
       return getJSONOrNullPromise(jsonUrl+ ".model.json");
     }).then( model => {
       if ( model ) {
+        result.modelDescription = model.modelDescription || jsonUrl;
         result.columnsDescription = model.columnsDescription;
         result.columnsDefaultWidth = model.columnsDefaultWidth;
         result.columns = model.columns;
         result.columnsIndexed = model.columnsIndexed;
+        setTitleEtc(jsonUrl, result.modelDescription);
       }
       augmentResult(result,jsonUrl);
       console.log('NOW ' + JSON.stringify(result,undefined,2));
@@ -145,7 +152,8 @@ function loadPlainJSONEtc(resolve, reject , jsonUrl) {
       (window as any).mdldata = r;
       records = r.data;
       console.log("here data" + r.data.length);
-      (window as any).makeElasticIndex(r.serIndex);
+      var elasticlunr = (window as any).elasticlunr;
+      AdaptElastic.makeElasticIndex(elasticlunr, r.serIndex);
       console.log("parsed ok!");
       resolve(r);
     })
@@ -305,8 +313,19 @@ if ( btn ) {
   btn.onclick = showColumns; 
 }
 
+function setTitleEtc(url, description) {
+  description = description || url;
+  document.title = description;
+  var a = document.createElement("a");
+  a.href = url;
+  a.innerText = description;
+  document.getElementById("Title").innerText = url;
+  document.getElementById("Title").appendChild(a);
+}
+
 try {
 
+  var mdlsrc = "";
 var loadPromise = new (window as any).Promise(function (resolve, reject) {
   var oReq = new XMLHttpRequest();
   oReq.addEventListener("load", function() {
@@ -314,6 +333,7 @@ var loadPromise = new (window as any).Promise(function (resolve, reject) {
     (window as any).mdldata = r;
     records = r.data;
     console.log("here data" + r.data.length);
+    setTitleEtc(mdlsrc, r.modelDescription);
     (window as any).makeElasticIndex(r.serIndex);
     console.log("parsed ok!");
     resolve(r);
@@ -321,12 +341,6 @@ var loadPromise = new (window as any).Promise(function (resolve, reject) {
   var us = new URLSearchParams(window.location.search);
   if(us.has("data")) {
     var dataurl = us.get("data");
-    document.title = dataurl;
-    var a = document.createElement("a");
-    a.href = dataurl;
-    a.innerText = dataurl;
-    document.getElementById("Title").innerText = dataurl;
-    document.getElementById("Title").appendChild(a);
     loadPlainJSONEtc(resolve,reject,dataurl);
     return;
   }
@@ -339,8 +353,6 @@ var loadPromise = new (window as any).Promise(function (resolve, reject) {
   }
   var mdlsrc = document.getElementById('container').getAttribute('mdlsrc');
   if ( mdlsrc ) {
-    document.title = mdlsrc;
-    console.log("dataurl" + mdlsrc);
     oReq.open("GET", mdlsrc);
     oReq.send();
     return;

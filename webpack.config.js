@@ -12,6 +12,7 @@ module.exports = {
   devtool: 'source-map',
   resolve: {
       // Add '.ts' and '.tsx' as resolvable extensions.
+//      extensions : ['',".ts", ".tsx"]
       //  extensions: ['','.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
   plugins : [],
