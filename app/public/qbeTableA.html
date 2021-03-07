@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>query by example - indexed table </title>
+    <!-- contains absolute paths to resources -->
+    <link rel="stylesheet" href="https://jfseb.github.io/qbei_json_table/app/public/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="https://jfseb.github.io/qbei_json_table/app/public/css/qbetable/theme.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <div class="navbar-brand" id="Title" style="bgcolor:orange;color:darkblue;font-family:Arial Black;font-size:15.118px">
+            query by example json table</div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <div class="navbar-btn btn btn-default" id="btnColumns" >columns...</div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <link rel="stylesheet" href="https://jfseb.github.io/qbei_json_table/app/public/css/qbetable/fixed-data-table.css">
+    <link rel="stylesheet" href="https://jfseb.github.io/qbei_json_table/app/public/css/qbetable/qbetable.css">
+    <p> &nbsp;</p>
+    <p>&nbsp;</p>
+    <p></p>
+    <div class="examplePage" id="container" data="xdata.json"></div>
+    columnsDialog
+    <div id="columnsDialog" style="content-visibility:hidden; visibility:hidden;padding: 10px; position: absolute; top:8%; left: 0%; width:100%; height:95%; background:white; border:3px brown solid;visibility:block;">
+         pick displayed columns ...
+        <br/>
+        <div class="navbar-btn btn btn-default" id="btnColumnsDialogCancel" >Cancel</div>
+        <div class="navbar-btn btn btn-default" id="btnColumnsDialogReset" > All in Order</div>
+        <div class="navbar-btn btn btn-default" id="btnColumnsDialogUpdate" >Set checked Colums</div>
+        <br/>
+        <table class="table table-columns" cellspacing="30" cellpadding="20" >
+            <thead class="thead thead-columns" style="border:2px black solid;"><tr ><th 
+                class="th th-columns th-columns-cb" style="padding: 10px;">on</th>
+                <th class="th th-columns th-columns-nr"
+                style="padding: 10px;">#</th>
+                <th>Name</th><th style="padding: 10px;">Description</th></tr>
+            </thead>
+            <tbody style="border:2px black solid;padding: 10px;" id="columnsTableBody">
+            </tbody>
+        </table>
+    </div>
+    <script src="https://jfseb.github.io/qbei_json_table/app/public/vendor/react.production.min.js"></script>
+    <script src="https://jfseb.github.io/qbei_json_table/app/public/vendor/react-dom.production.min.js"></script>
+    <script src="https://jfseb.github.io/qbei_json_table/app/public/vendor/elasticlunr.min.js"></script>
+    <script src="https://jfseb.github.io/qbei_json_table/app/public/js/qbetable.js"></script>
+  </body>
+</html>
