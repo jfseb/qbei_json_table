@@ -20798,11 +20798,11 @@ function loadPlainJSONEtc(resolve, reject, jsonUrl) {
             setTitleEtc(jsonUrl, result.modelDescription);
         }
         augmentResult(result, jsonUrl);
-        console.log('NOW ' + JSON.stringify(result, undefined, 2));
+
         var r = result;
         window.mdldata = r;
         records = r.data;
-        console.log("here data" + r.data.length);
+        console.log("here data #" + r.data.length);
         var elasticlunr = window.elasticlunr;
         AdaptElastic.makeElasticIndex(elasticlunr, r.serIndex);
         console.log("parsed ok!");
@@ -21771,10 +21771,12 @@ function state(state, action) {
             return applyQBE(a);
         }
         case 'GotData': {
-            var a = Object.assign({}, state);
+            a.init = true;
             var actionGotData = action;
             a = mergeDataRespose(a, actionGotData.mdlData);
             a = parseAndApplyHash(a);
+            console.log(' Got Data ' + JSON.stringify(a.columnsQBE) + JSON.stringify(a, undefined, 2));
+            setTimeout(function () { fetchPosts(a); }, 0);
             return applyQBE(a);
         }
         case 'SetColumnQBE': {

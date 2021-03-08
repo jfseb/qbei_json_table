@@ -145,11 +145,10 @@ function loadPlainJSONEtc(resolve, reject , jsonUrl) {
         setTitleEtc(jsonUrl, result.modelDescription);
       }
       augmentResult(result,jsonUrl);
-      console.log('NOW ' + JSON.stringify(result,undefined,2));
       var r = result;
       (window as any).mdldata = r;
       records = r.data;
-      console.log("here data" + r.data.length);
+      console.log("here data #" + r.data.length);
       var elasticlunr = (window as any).elasticlunr;
       AdaptElastic.makeElasticIndex(elasticlunr, r.serIndex);
       console.log("parsed ok!");
@@ -1328,7 +1327,6 @@ function state(state = getInitialState()
     case 'SetColumnSort': {
       var a = (Object as any).assign({}, state) as IState;
       var actionSort = action as IActionSetColumnSort;
-
       var a = applySort(a, actionSort.columnKey, actionSort.sortDir);
       updateHash(a);
       return a;
@@ -1349,9 +1347,12 @@ function state(state = getInitialState()
     }
     case 'GotData': {
       var a = (Object as any).assign({},state) as IState;
+      a.init = true;
       var actionGotData = action as IActionGotData;
       a = mergeDataRespose(a, actionGotData.mdlData);
       a = parseAndApplyHash(a);
+      console.log(' Got Data ' + JSON.stringify(a.columnsQBE) + JSON.stringify(a,undefined,2));
+      setTimeout( function(){ fetchPosts(a);}, 0);
       return applyQBE(a);
     }
     case 'SetColumnQBE': {
