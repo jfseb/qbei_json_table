@@ -4,10 +4,18 @@ An indexed query-by-example Web page for a JSON data source
 
 # External referncing 
 
+1. Copy only HTML 
+
+  qbeTableA.html contains absolute pathes 
+
 https://jfseb.github.io/qbei_json_table/app/public/index.html
 
-# examples pulling in data via url : 
+2. Reference json
 
+3. Copy all. 
+
+
+# examples pulling in data via url : 
 
 [https://jfseb.github.io/qbei_json_table/app/public/index.html?data=xdata.json](https://jfseb.github.io/qbei_json_table/app/public/index.html?data=xdata.json)
 

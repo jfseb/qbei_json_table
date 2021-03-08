@@ -121,8 +121,6 @@ function augmentResult(result, jsonUrl: string) {
 }
 
 function loadPlainJSONEtc(resolve, reject , jsonUrl) {
-  document.title = jsonUrl;
-  document.getElementById("Title").innerText = jsonUrl;
   var result = { data: null, 
                   modelDescription : null,
                   columnsDescription : null,
@@ -314,13 +312,16 @@ if ( btn ) {
 }
 
 function setTitleEtc(url, description) {
-  description = description || url;
-  document.title = description;
-  var a = document.createElement("a");
-  a.href = url;
-  a.innerText = description;
-  document.getElementById("Title").innerText = url;
-  document.getElementById("Title").appendChild(a);
+  var title = document.getElementById("Title"); 
+  if ( title ) {
+    description = description || url;
+    document.title = description;    
+    var a = document.createElement("a");
+    a.href = url;
+    a.innerText = description + "&nbsp;";
+    document.getElementById("Title").innerText = url;
+    document.getElementById("Title").appendChild(a);
+  }
 }
 
 try {
@@ -1351,7 +1352,7 @@ function state(state = getInitialState()
       var actionGotData = action as IActionGotData;
       a = mergeDataRespose(a, actionGotData.mdlData);
       a = parseAndApplyHash(a);
-      return a;
+      return applyQBE(a);
     }
     case 'SetColumnQBE': {
       var a = (Object as any).assign({}, state) as IState;
