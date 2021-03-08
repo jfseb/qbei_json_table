@@ -11,6 +11,7 @@ import * as AdaptElastic from './adaptElastic.ts';
 
 const MAXWIDTH= 570;
 const MINWIDTH= 30;
+const NRRECS = 180;
 
 // fire off XMLHttpRequest early
 function reqListener () {
@@ -866,7 +867,7 @@ class SortExample extends React.Component<IPropsSortExample, ISortState> {
     var colSortDirs = this.props.colSortDirs;
     var size = _dataList.getSize();
     var sortIndexes = this.props.sortIndexes || [];
-    var sortIndexes = sortIndexes.slice(0,18);
+    var sortIndexes = sortIndexes.slice(0,NRRECS);
     var columnsDefaultWidth = this.props.columnsDefaultWidth;
     var columnsDescription = this.props.columnsDescription;
     var columns = this.props.columns;
@@ -883,7 +884,7 @@ class SortExample extends React.Component<IPropsSortExample, ISortState> {
         headerHeight={60}
         onColumnResizeEndCallback={this._onColumnResizeEndCallback}
         isColumnResizing={false}
-        width={getClientRect().width - 0}
+        width={getClientRect().width - 20}
         height={getClientRect().height - 130}
         {...this.props}>
         <Column
