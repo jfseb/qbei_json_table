@@ -1443,7 +1443,6 @@ function reSortAgain(a: IState) {
 }
 
 
-
 function applyQBE(a: IState) {
 
   a.indexListQBEFiltered = Object.keys(a.columnsQBE).reduce( (prev, qbecol : TY_recordKey) =>
