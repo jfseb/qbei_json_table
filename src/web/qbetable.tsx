@@ -318,8 +318,8 @@ function setTitleEtc(url, description) {
     document.title = description;    
     var a = document.createElement("a");
     a.href = url;
-    a.innerText = description + "&nbsp;";
-    document.getElementById("Title").innerText = url;
+    a.innerText = "data";
+    document.getElementById("Title").innerText = description + "&nbsp;"
     document.getElementById("Title").appendChild(a);
   }
 }
@@ -1039,6 +1039,20 @@ function getInitialState() : IState {
   return aState;
 }
 
+function parseSearch() {
+var hash = window.location.hash;
+var res = {search : ""};
+var args = hash.split('/');
+var newColumnIdxs = [];
+args.forEach(function(o) {
+  if(o.charAt(0) === 's') {
+    res.search = decodeURIComponent(o.substring(1));
+  }
+});
+return res.search;
+}
+
+
 function parseAndApplyHash(aState: IState) : IState {
 
   var hash = window.location.hash;
@@ -1282,6 +1296,16 @@ function processColumnOp(a : string, state : IState) {
   return false;
 }
 
+function touchSearch() {
+  var src = parseSearch();
+  setTimeout( function() { 
+    (document.getElementsByClassName("searchInput")[0] as any).value = "a"; 
+  }, 10);
+  setTimeout( function() { 
+    (document.getElementsByClassName("searchInput")[0] as any).value = src; 
+  }, 20);
+}
+
 // ------------
 // reducers
 // ------------
@@ -1354,6 +1378,7 @@ function state(state = getInitialState()
       a = parseAndApplyHash(a);
       console.log(' Got Data ' + JSON.stringify(a.columnsQBE) + JSON.stringify(a,undefined,2));
       setTimeout( function(){ fetchPosts(a);}, 0);
+      setTimeout( touchSearch, 100);
       return applyQBE(a);
     }
     case 'SetColumnQBE': {
