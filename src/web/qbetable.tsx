@@ -319,7 +319,7 @@ function setTitleEtc(url, description) {
     var a = document.createElement("a");
     a.href = url;
     a.innerText = "data";
-    document.getElementById("Title").innerText = description + "&nbsp;"
+    document.getElementById("Title").innerText = description + " ";
     document.getElementById("Title").appendChild(a);
   }
 }
