@@ -2,7 +2,7 @@
 An indexed query-by-example Web page for a JSON data source
 
 
-# External referncing 
+# External referencing 
 
 1. Copy only HTML 
 
