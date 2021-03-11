@@ -15,7 +15,7 @@ var fs = require('fs');
 //#####################################
 
 var app = express();
-var port = process.env.PORT || 42022;
+var port = process.env.PORT || 3000;
 app.locals.pretty = true;
 app.set('port', port);
 //app.set('views', [__dirname + '/app/server/views', modelPath + '/views']);
