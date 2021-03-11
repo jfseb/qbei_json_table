@@ -12,7 +12,8 @@
   },
   "scripts": {
     "setup": "gulp default",
-    "test": "gulp test",
+    "test": "gulp test", 
+    "script" : "./server.js"
     "testOld": "./node_modules/.bin/nodeunit test/match test/utils && eslint",
     "run": "node server.js",
     "start": "node server.js",
